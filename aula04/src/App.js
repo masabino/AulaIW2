@@ -1,23 +1,43 @@
-import logo from './logo.svg';
 import './App.css';
+import {useState}  from "react";
 
 function App() {
+
+const[vetor, setVetor] = useState(["Joao", "Guilherme", "Marcela"]);
+const[aluno, setAluno] = useState("");
+
+function adicionar(){
+  setVetor([...vetor, aluno]);
+  setAluno("");
+}
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
+    <div>
+     <h1>Aula 04 - Estudo de Vetores</h1> 
+
+    <div className='conteudo'>
+      <h3>Entrada de Dados</h3>
+      <form>
         <p>
-          Edit <code>src/App.js</code> and save to reload.
+          Digite o nome do aluno:
+          <input type="text" value={aluno} onChange={ (e) => setAluno(e.target.value)} />
         </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+
+        <p>
+          <button type='button' onClick={adicionar}>Adicinonar o nome na lista</button>
+        </p>
+      </form>
+
+    </div>
+     <div className='conteudo'>
+      <h3>Lista de Alunos</h3>
+
+      <ul>
+        {vetor.map( nome => (<li>{nome}</li>) )}
+      </ul>
+     </div>
+
+
     </div>
   );
 }
